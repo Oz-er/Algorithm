@@ -1,55 +1,40 @@
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-typedef unsigned long long ull;
-typedef vector<ll> vll;
-#define f(i,a,b) for(ll i=a;i<b;i++)
-#define pb push_back
-#define yes cout<<"yes"<<endl
-#define no cout<<"no"<<endl
 
-// vll v={1,3,6,10,15};
+ll dp[10005];
+const ll INF=1e18;
 
-//memoize the changing variable
+ll coincalc(vector<ll>&coins, ll w){
 
-ll dp[10010];
+    if(w==0)return 0;
+    if(w<0)return 1e18;
 
-ll cc(ll amount,vector<ll>&v){
+    if(dp[w]!=-1)return dp[w];
 
-    if(amount==0)return 0;
-    if(dp[amount]!=-1)return dp[amount];
+    ll ans =INF;
 
-    ll ans= LONG_LONG_MAX;
-
-    for(ll coin : v){
-        if(amount-coin >=0){
-            ans = min(ans, cc(amount-coin,v)+1);          
-        }
+    for(ll coin : coins){
+        ans = min(ans,1+coincalc(coins,w-coins[coin]));
     }
 
-    return dp[amount]=ans;
+
+    return dp[w]=ans;
 }
 
 
-void solve(ll amount,vector<ll>&v){
+
+
+
+
+
+int main(){
 
     memset(dp,-1,sizeof(dp));
 
-    ll ans = cc(amount,v);
+    vector<ll>coins ={1,5,6,9};
+    ll money = 10;
 
-    if(ans==LONG_LONG_MAX){
-        cout<<-1<<endl;
-    }
-    else{
-        cout<<ans<<endl;
-    }
-}
+    ll ans = coincalc(coins,money);
 
-int main(){
-ll t;
-cin>>t;
-while(t--){
-    solve();
-}
-return 0;
 }
