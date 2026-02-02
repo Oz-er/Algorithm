@@ -1,0 +1,9 @@
+case #1
+80
+60
+60
+case #2
+40
+no path
+80
+case #3
