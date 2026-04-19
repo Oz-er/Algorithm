@@ -172,15 +172,94 @@ void convexHull(vector<Point> &points){
 
 
 
-// int main() {
-//     vector<Point> points = {{0, 3}, {1, 1}, {2, 2}, {4, 4},
-//                             {0, 0}, {1, 2}, {3, 1}, {3, 3}};
-                            
-//     cout << "The points in the convex hull are: \n";
-//     convexHull(points);
-    
-//     return 0;
-// }
+
+//--------------------------------extra stuff-----------------------------------------
+//------------------------------------------------------------------------------------
+
+//================ SEGMENT INTERSECTION =================//
+
+bool onSegment(Point p, Point q, Point r){
+    return (q.x <= max(p.x,r.x) && q.x >= min(p.x,r.x) &&
+            q.y <= max(p.y,r.y) && q.y >= min(p.y,r.y));
+}
+
+bool doIntersect(Point p1, Point p2, Point p3, Point p4){
+
+    int o1 = orientation(p1,p2,p3);
+    int o2 = orientation(p1,p2,p4);
+    int o3 = orientation(p3,p4,p1);
+    int o4 = orientation(p3,p4,p2);
+
+    if(o1 != o2 && o3 != o4) return true;
+
+    if(o1==0 && onSegment(p1,p3,p2)) return true;
+    if(o2==0 && onSegment(p1,p4,p2)) return true;
+    if(o3==0 && onSegment(p3,p1,p4)) return true;
+    if(o4==0 && onSegment(p3,p2,p4)) return true;
+
+    return false;
+}
+//========================================================//
+
+//================ POINT IN POLYGON =================//
+
+bool isInside(vector<Point>& polygon, Point p){
+
+    int n = polygon.size();
+    if(n < 3) return false;
+
+    Point extreme = {1000000000, p.y};
+
+    int count = 0, i = 0;
+
+    do{
+        int next = (i+1)%n;
+
+        if(doIntersect(polygon[i], polygon[next], p, extreme)){
+
+            if(orientation(polygon[i], p, polygon[next]) == 0){
+                return onSegment(polygon[i], p, polygon[next]);
+            }
+
+            count++;
+        }
+
+        i = next;
+
+    }while(i != 0);
+
+    return (count % 2 == 1);
+}
+
+//================ CONVEX POLYGON CHECK =================//
+
+bool isConvex(vector<Point>& poly){
+
+    int n = poly.size();
+    if(n < 3) return false;
+
+    int prev = 0;
+
+    for(int i=0;i<n;i++){
+        int o = orientation(poly[i],
+                            poly[(i+1)%n],
+                            poly[(i+2)%n]);
+
+        if(o != 0){
+            if(prev != 0 && o != prev) return false;
+            prev = o;
+        }
+    }
+
+    return true;
+}
+
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+
+
+
+
 
 
 
