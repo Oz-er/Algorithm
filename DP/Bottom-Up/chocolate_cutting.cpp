@@ -102,3 +102,35 @@ int main(){
         cout << p.first << " " << p.second << endl;
     }
 }
+
+
+
+
+/* =========================================
+SAMPLE INPUT 
+(Dimensions: 2x3 chocolate. Prices for 1x1 to 2x3)
+Format: 
+Height Width
+PriceMatrix (m rows, n columns)
+=========================================
+2 3
+1 5 8
+5 6 10
+=========================================
+EXPECTED OUTPUT:
+=========================================
+Max Revenue: 16
+Pieces sold (Height x Width):
+1 3
+1 3
+=========================================
+NOTES:
+- The input defines a 2x3 chocolate bar.
+- The prices for smaller pieces are:
+  1x1=1, 1x2=5, 1x3=8
+  2x1=5, 2x2=6, 2x3=10
+- The optimal strategy is to cut the 2x3 bar horizontally 
+  into two 1x3 pieces, each worth 8, for a total of 16. 
+  Selling the 2x3 bar as a whole would only yield 10.
+=========================================
+*/

@@ -92,3 +92,24 @@ int main(){
 
     cout<<endl;
 }
+
+
+/* =========================================
+SAMPLE INPUT 
+(Capacity 5, 4 items. Format: Weight Price)
+=========================================
+5
+4
+2 12
+1 10
+3 20
+2 15
+=========================================
+EXPECTED OUTPUT:
+=========================================
+max value : 37
+items taken :
+3 1 0 
+(Note: These are indices 3, 1, and 0, corresponding to items with weights 2, 1, and 2)
+=========================================
+*/

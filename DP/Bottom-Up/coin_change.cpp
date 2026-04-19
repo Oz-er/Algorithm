@@ -71,7 +71,7 @@ int main(){
 
     Building_table(coins,dp,money);
 
-    cout<<"max value :"<<dp[n][money]<<endl;
+    cout<<"minimimum num of coins :"<<dp[n][money]<<endl;
 
 
     vector<int>pieces;
@@ -82,3 +82,21 @@ int main(){
     for(int c : pieces) cout << c << " ";
     cout << endl;
 }
+
+
+
+
+/* =========================================
+SAMPLE INPUT 
+(Target 11, 3 denominations: 1, 5, 6)
+=========================================
+11
+3
+1 5 6
+=========================================
+EXPECTED OUTPUT:
+=========================================
+max value : 2
+Coins used: 6 5 
+=========================================
+*/

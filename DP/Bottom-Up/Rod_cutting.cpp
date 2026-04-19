@@ -83,3 +83,22 @@ int main(){
     for (int p : pieces) cout << p << " ";
     cout << endl;
 }
+
+
+
+
+
+/* =========================================
+SAMPLE INPUT 
+(Rod length 4, prices for lengths 1, 2, 3, 4)
+=========================================
+4
+1 5 8 9
+=========================================
+EXPECTED OUTPUT:
+=========================================
+max value : 10
+Pieces used: 2 2 
+(Note: Optimal revenue is achieved by cutting two pieces of length 2)
+=========================================
+*/

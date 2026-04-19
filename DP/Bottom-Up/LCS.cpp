@@ -60,3 +60,19 @@ int main(){
     string result = trackback(dp, s1, s2);
     cout << "LCS String: " << result << endl;
 }
+
+
+
+/* =========================================
+SAMPLE INPUT 
+(Two strings)
+=========================================
+ABCBDAB
+BDCABA
+=========================================
+EXPECTED OUTPUT:
+=========================================
+LCS Length: 4
+LCS String: BDAB
+=========================================
+*/

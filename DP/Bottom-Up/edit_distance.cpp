@@ -34,7 +34,8 @@ void trackback(vector<vector<int>>& dp, string& s1, string& s2){
         j--;
     }
 
-    // Operations are pushed in reverse order
+    reverse(ops.begin(), ops.end());
+
     for(int k=0; k<ops.size(); k++){
         cout << ops[k] << endl;
     }
@@ -60,6 +61,17 @@ void Building_table(string& s1, string& s2, vector<vector<int>>& dp){
     }
 }
 
+void printtable(vector<vector<int>>& dp){
+        int n =dp.size();
+        int m = dp[0].size();
+        for(int i=0;i<=n;i++){
+        for(int j=0;j<=m;j++){
+            cout<<dp[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+}
+
 
 int main(){
     string s1, s2;
@@ -75,4 +87,25 @@ int main(){
     cout << "Edit Distance: " << dp[n][m] << endl;
     cout << "Operations: " << endl;
     trackback(dp, s1, s2);
+
+
 }
+
+
+/* =========================================
+SAMPLE INPUT 
+(Two strings: kitten and sitting)
+=========================================
+kitten
+sitting
+=========================================
+EXPECTED OUTPUT:
+=========================================
+Edit Distance: 3
+Operations: 
+Insert g
+Replace e with i
+Replace k with s
+
+=========================================
+*/
