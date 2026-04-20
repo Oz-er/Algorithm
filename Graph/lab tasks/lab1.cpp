@@ -3,7 +3,8 @@ using namespace std;
 
 const int INF = 5000; 
 
-
+//minimax variant = maximum edge weight on that path
+//1 based input converted to 0 based input
 
 // int mat[7][7]={
 //         {0,50,60,INF,INF,INF,INF},
@@ -22,11 +23,15 @@ vector<vector<int>> floydwarshall(vector<vector<int>> &graph){
     vector<vector<int>>dp(s,vector<int>(s));
     
     for(int i=0;i<s;i++){
-        for(int j=0;j<s;j++){
-            dp[i][j]=graph[i][j];
-        }
+    for(int j=0;j<s;j++){
+        dp[i][j]=graph[i][j];
+    }
     }
 
+
+
+//------------- triple nested relaxation over ---------------------
+//----------------- intermidiate node k ---------------------------
     for(int k=0;k<s;k++){
         for(int i=0;i<s;i++){
             for(int j=0;j<s;j++){
@@ -36,8 +41,7 @@ vector<vector<int>> floydwarshall(vector<vector<int>> &graph){
             }
         }
     }
-
-
+//-----------------------------------------------------------------
     return dp;
 
 }
@@ -48,6 +52,9 @@ vector<vector<int>> floydwarshall(vector<vector<int>> &graph){
 int main(){
 
     int c,s,q;
+    //c = number of crossings(node)
+    //s = number of streets (edges)
+    //q = number of queries
 
     int cs =1;
 
@@ -57,22 +64,26 @@ int main(){
 
         cout<<"case #"<<cs<<endl;
         cs++;
+        
+    //----------------initializing matrix--------------------        
         vector<vector<int>>graph(c,vector<int>(c));
-        
-        
+  
+
         for(int i=0;i<c;i++){
-            for(int j=0;j<c;j++){
-                if(i==j){
-                    graph[i][j]=0;
-                }
-                else{
-                    graph[i][j]=INF;
-                }
+        for(int j=0;j<c;j++){
+            if(i==j){
+            graph[i][j]=0;
+            }
+            else{
+            graph[i][j]=INF;
+            }
             }
         }
+    //--------------------------------------------------------
 
-
-
+        // c1 = source node 
+        // c2 = target node
+        // d = edge weight
         while(s--){
             int c1,c2,d;
             cin>>c1>>c2>>d;
@@ -89,7 +100,7 @@ int main(){
 
             int ans = optimized_graph[start-1][end-1];
 
-            if(ans==5000)cout<<"no path"<<endl;
+            if(ans==INF)cout<<"no path"<<endl;
             else{
                 cout<<ans<<endl;
             }

@@ -33,10 +33,8 @@ void make(ll v){
 
 
 ll find(ll v){
-
     if(v==parent[v])return v;
-
-    parent[v]=find(v);
+    parent[v]=find(parent[v]);   
     return parent[v];
 }
 
@@ -155,7 +153,10 @@ int main(){
     ll edge = get<2>(tree[i]);
     totalcost+=edge;
     cout<<from<<" "<<to<<" "<<edge<<endl;
-    }  
+    } 
+    
+    cout<<totalcost<<endl;
+
 
 
 }
